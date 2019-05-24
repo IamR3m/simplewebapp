@@ -30,7 +30,7 @@ public class EmployeeDao {
     }
 
     public void insertEmployee (Employee employee) {
-        final String sql = "insert into emlpoyee (employee_id,first_name,last_name,department_id,job_title,gender,date_of_birth) values (:employee_id,:first_name,:last_name,:department_id,:job_title,:gender,:date_of_birth)";
+        final String sql = "insert into employee(employee_id,first_name,last_name,department_id,job_title,gender,date_of_birth) values(:employee_id,:first_name,:last_name,:department_id,:job_title,:gender,:date_of_birth)";
 
         SqlParameterSource parameterSource = new MapSqlParameterSource()
                 .addValue("employee_id",employee.getEmployeeId())
@@ -38,13 +38,13 @@ public class EmployeeDao {
                 .addValue("last_name",employee.getLastName())
                 .addValue("department_id",employee.getDepartmentId())
                 .addValue("job_title",employee.getJobTitle())
-                .addValue("gender",employee.getGender())
-                .addValue("date_of_birth",employee.getDateOfBirth().format(DateTimeFormatter.ISO_LOCAL_DATE));
+                .addValue("gender",employee.getGender().toString())
+                .addValue("date_of_birth",employee.getDateOfBirth());
         template.update(sql,parameterSource, new GeneratedKeyHolder());
     }
 
     public void updateEmployee (Employee employee) {
-        final String sql = "update employee set employee_id=:employee_id, first_name=:first_name, last_name=:last_name, department_id=:department_id, job_title=:job_title, gender=:gender, date_of_birth=:date_of_birth where eployee_id=:employee_id";
+        final String sql = "update employee set employee_id=:employee_id, first_name=:first_name, last_name=:last_name, department_id=:department_id, job_title=:job_title, gender=:gender, date_of_birth=:date_of_birth where employee_id=:employee_id";
 
         SqlParameterSource parameterSource = new MapSqlParameterSource()
                 .addValue("employee_id", employee.getEmployeeId())
@@ -52,13 +52,13 @@ public class EmployeeDao {
                 .addValue("last_name",employee.getLastName())
                 .addValue("department_id",employee.getDepartmentId())
                 .addValue("job_title", employee.getJobTitle())
-                .addValue("gender",employee.getGender())
-                .addValue("date_of_birth",employee.getDateOfBirth().format(DateTimeFormatter.ISO_LOCAL_DATE));
+                .addValue("gender",employee.getGender().toString())
+                .addValue("date_of_birth",employee.getDateOfBirth());
         template.update(sql,parameterSource,new GeneratedKeyHolder());
     }
 
     public void executeUpdateEmployee (Employee employee) {
-        final String sql = "update employee set employee_id=:employee_id, first_name=:first_name, last_name=:last_name, department_id=:department_id, job_title=:job_title, gender=:gender, date_of_birth=:date_of_birth where eployee_id=:employee_id";
+        final String sql = "update employee set employee_id=:employee_id, first_name=:first_name, last_name=:last_name, department_id=:department_id, job_title=:job_title, gender=:gender, date_of_birth=:date_of_birth where employee_id=:employee_id";
 
         Map<String,Object> map = new HashMap<>();
         map.put("employee_id",employee.getEmployeeId());
@@ -66,8 +66,8 @@ public class EmployeeDao {
         map.put("last_name",employee.getLastName());
         map.put("department_id",employee.getDepartmentId());
         map.put("job_title",employee.getJobTitle());
-        map.put("gender",employee.getGender());
-        map.put("date_of_birth",employee.getDateOfBirth().format(DateTimeFormatter.ISO_LOCAL_DATE));
+        map.put("gender",employee.getGender().toString());
+        map.put("date_of_birth",employee.getDateOfBirth());
 
 //        template.execute(sql, map, new PreparedStatementCallback<Object>() {
 //            @Override
