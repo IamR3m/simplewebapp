@@ -3,6 +3,7 @@ package com.alexkasko.simplewebapp.dto;
 import java.time.LocalDate;
 
 public class Employee {
+
     private Long employeeId;
     private String firstName;
     private String lastName;
@@ -10,6 +11,21 @@ public class Employee {
     private String jobTitle;
     private Gender gender;
     private LocalDate dateOfBirth;
+
+    public Employee() {
+    }
+
+    public Employee(Long employeeId, String firstName, String lastName, Long departmentId, String jobTitle,
+                    Gender gender, LocalDate dateOfBirth) {
+        this.employeeId = employeeId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.departmentId = departmentId;
+        this.jobTitle = jobTitle;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+    }
+
 
     public Long getEmployeeId() {
         return employeeId;

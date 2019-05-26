@@ -3,6 +3,7 @@ package com.alexkasko.simplewebapp.service;
 import com.alexkasko.simplewebapp.dao.EmployeeDao;
 import com.alexkasko.simplewebapp.dto.Employee;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -11,6 +12,7 @@ import java.util.List;
 @Component
 public class EmployeeService {
     @Resource
+    @Autowired
     EmployeeDao employeeDao;
 
     public List<Employee> getAll() {
